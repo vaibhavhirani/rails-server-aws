@@ -39,6 +39,7 @@ resource "aws_ecs_cluster" "ecs" {
       }
     }
   }
+  depends_on = [ aws_ecr_repository.ecr ]
 }
 
 # Cloud Watch Logs
