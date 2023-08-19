@@ -1,11 +1,11 @@
 # VPC for Redis Cluster
-resource "aws_vpc" "rails_vpc" {
+resource "aws_vpc" "vpc" {
   cidr_block = "10.0.0.0/16"
 }
 
 # Subnet for Redis Cluster
-resource "aws_subnet" "rails_subnet" {
-  vpc_id     = aws_vpc.rails_vpc.id
+resource "aws_subnet" "subnet" {
+  vpc_id     = aws_vpc.vpc.id
   cidr_block = "10.0.1.0/24"
 
   tags = {
@@ -16,7 +16,7 @@ resource "aws_subnet" "rails_subnet" {
 # Subnet Group for Redis Cluster
 resource "aws_elasticache_subnet_group" "redis" {
   name       = "redis-subnet"
-  subnet_ids = [aws_subnet.rails_subnet.id]
+  subnet_ids = [aws_subnet.subnet.id]
 }
 
 # AWS Elastic Cache Redis
@@ -34,5 +34,5 @@ resource "aws_elasticache_cluster" "redis" {
     log_format       = "text"
     log_type         = "engine-log"
   }
-  depends_on = [aws_cloudwatch_log_group.logs, aws_subnet.rails_subnet]
+  depends_on = [aws_cloudwatch_log_group.logs, aws_subnet.subnet]
 }
