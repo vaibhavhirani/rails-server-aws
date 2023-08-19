@@ -10,7 +10,7 @@ variable "redis-cluster-name" {
 }
 
 variable "redis-cluster-node-type" {
-    default = "cache.t3.micro"
+    default = "cache.t2.micro"
 }
 
 variable "redis-cluster-node-num" {
