@@ -60,3 +60,7 @@ variable "opensearch-domain-engine-version" {
 variable "opensearch-domain-instance-type" {
   default = "t3.small.search"
 }
+
+variable "application-name" {
+  default = "sharko"
+}
