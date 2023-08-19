@@ -53,6 +53,7 @@ resource "aws_ecs_task_definition" "app_task" {
   memory                   = 512         
   cpu                      = 256     
   execution_role_arn       = aws_iam_role.ecsTaskExecutionRole.arn
+  depends_on = [ null_resource.docker_build_push ]
 }
 
 # Creates an IAM Role 
