@@ -22,3 +22,6 @@ output "opensearch-domain-endpoint" {
 output "s3-bucket-name" {
   value = aws_s3_bucket.s3.bucket
 }
+output "app_url" {
+  value = aws_alb.application_load_balancer.dns_name
+}
