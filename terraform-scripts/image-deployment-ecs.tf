@@ -9,7 +9,7 @@ data "aws_iam_policy_document" "assume_role_policy" {
 }
 
 # Create the ECS Service which contains the app-task along with side-tasks as well.
-resource "aws_ecs_service" "rail" {
+resource "aws_ecs_service" "ecs" {
   name            = "service-${var.application-name}"
   cluster         = aws_ecs_cluster.ecs.id
   task_definition = aws_ecs_task_definition.app_task.arn
