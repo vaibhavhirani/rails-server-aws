@@ -23,15 +23,6 @@ resource "aws_ecr_repository" "ecr" {
 }
 
 
-# AWS S3 
-resource "aws_s3_bucket" "s3" {
-  bucket = var.s3-bucket-name
-  tags = {
-    Name = var.s3-bucket-name
-  }
-
-}
-
 # Elastic Container Service
 resource "aws_ecs_cluster" "ecs" {
   name = var.container-service-name
@@ -53,4 +44,13 @@ resource "aws_ecs_cluster" "ecs" {
 # Cloud Watch Logs
 resource "aws_cloudwatch_log_group" "logs" {
   name = var.cloud-watch-log-name
+}
+
+# AWS S3 
+resource "aws_s3_bucket" "s3" {
+  bucket = var.s3-bucket-name
+  tags = {
+    Name = var.s3-bucket-name
+  }
+
 }
