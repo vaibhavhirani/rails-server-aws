@@ -1,3 +1,4 @@
+# Docker Task that gets the ecr login creds, does docker login, builds and pushes the sharko image to ecr
 resource "null_resource" "docker_build_push" {
   provisioner "local-exec" {
     command = <<EOF
