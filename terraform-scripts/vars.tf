@@ -1,62 +1,62 @@
 # ECR Related Variables
 variable "container-registry-name" {
-    default = "rails-registry"
+  default = "rails-registry"
 }
 
 
 # Redis specific variables/parameters
 variable "redis-cluster-name" {
-    default = "rails-redis-instance"
+  default = "rails-redis-instance"
 }
 
 variable "redis-cluster-node-type" {
-    default = "cache.t2.micro"
+  default = "cache.t2.micro"
 }
 
 variable "redis-cluster-node-num" {
-    default = 1
+  default = 1
 }
 
 variable "redis-cluster-parameter-group-name" {
-    default = "default.redis3.2"
+  default = "default.redis6.2"
 }
 
 variable "redis-cluster-version" {
-    default = "3.2.10"
+  default = "6.2"
 }
 
 variable "redis-cluster-port" {
-    default = 6379
+  default = 6379
 }
 
 
 # S3
 variable "s3-bucket-name" {
-    default = "rails-server-bucket"
+  default = "rails-server-bucket"
 }
 
 # ECS Cluster 
 variable "container-service-name" {
-    default = "rails-ecs"
+  default = "rails-ecs"
 }
 
 # Cloud Watch Service Logs
 variable "cloud-watch-log-name" {
-    default = "rails-log"
+  default = "rails-log"
 }
 
 
 # Opensearch Instance Variables
 variable "opensearch-domain-name" {
-    default = "rails-opensearch-domain"
+  default = "rails-opensearch-domain"
 }
 
 
 variable "opensearch-domain-engine-version" {
-    default = "Elasticsearch_7.10"
+  default = "Elasticsearch_7.10"
 }
 
 
 variable "opensearch-domain-instance-type" {
-    default = "t2.micro.search"
+  default = "t3.small.search"
 }
