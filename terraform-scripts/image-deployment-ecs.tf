@@ -14,6 +14,7 @@ resource "aws_ecs_service" "ecs" {
   cluster         = aws_ecs_cluster.ecs.id
   task_definition = aws_ecs_task_definition.app_task.arn
   desired_count   = 3
+  launch_type = "FARGATE"
   
   load_balancer {
     target_group_arn = aws_lb_target_group.target_group.arn 
@@ -23,7 +24,7 @@ resource "aws_ecs_service" "ecs" {
 
   network_configuration {
     subnets          = ["${aws_default_subnet.default_subnet_a.id}", "${aws_default_subnet.default_subnet_b.id}"]
-    # assign_public_ip = true                                                
+    assign_public_ip = true                                                
     security_groups  = ["${aws_security_group.service_security_group.id}"] 
   }
 
@@ -34,19 +35,20 @@ resource "aws_ecs_service" "ecs" {
 
 resource "aws_ecs_task_definition" "app_task" {
   family = "${var.application-name}"
-  container_definitions = jsonencode([
+  container_definitions = <<DEFINITION
+  [
     {
-      name      = "${var.application-name}",
-      image     = "${aws_ecr_repository.ecr.repository_url}:latest",
-      essential = true
-      portMappings = [
+      "name"      : "${var.application-name}",
+      "image"     : "${aws_ecr_repository.ecr.repository_url}:latest",
+      "portMappings" : [
         {
-          containerPort = 3000
-          hostPort      = 3000
+          "containerPort" : 3000,
+          "hostPort"      : 3000
         }
       ]
     }
-  ])
+  ]
+  DEFINITION
   # using Fargate as the launch type. It is a serverless offering.
   requires_compatibilities = ["FARGATE"] 
   network_mode             = "awsvpc"    
