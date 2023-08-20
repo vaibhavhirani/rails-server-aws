@@ -40,6 +40,19 @@ resource "aws_ecs_task_definition" "app_task" {
     {
       "name"      : "${var.application-name}",
       "image"     : "${aws_ecr_repository.ecr.repository_url}:latest",
+      "environment": [
+        {"name": "REDIS_URL", "value": "${aws_elasticache_cluster.redis.cluster_address}"},
+        {"name": "REDIS_PORT", "value": "${var.redis-port}"},
+        {"name": "ELASTIC_SEARCH", "value": "${aws_opensearch_domain.domain.endpoint}"},
+        {"name": "S3_BUCKET", "value": "${aws_s3_bucket.s3.bucket}"},
+        {"name": "AWS_ACCESS_KEY_ID,", "value": "${var.AWS_ACCESS_KEY_ID}"},
+        {"name": "AWS_SECRET_ACCESS_KEY,", "value": "${var.AWS_SECRET_ACCESS_KEY}"},
+        {"name": "POSTGRES_HOST", "value": ""${var.POSTGRES_HOST}"}, 
+        {"name": "POSTGRES_PORT", "value": ""${var.POSTGRES_PORT}"}, 
+        {"name": "POSTGRES_DATABASE", "value": ""${var.POSTGRES_DATABASE}"}, 
+        {"name": "POSTGRES_USERNAME", "value": ""${var.POSTGRES_USERNAME}"}, 
+        {"name": "POSTGRES_PASSWORD", "value": ""${var.POSTGRES_PASSWORD}"}, 
+      ],
       "portMappings" : [
         {
           "containerPort" : 3000,

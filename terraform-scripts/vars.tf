@@ -65,3 +65,39 @@ variable "opensearch-domain-instance-type" {
 variable "application-name" {
   default = "sharko"
 }
+
+# S3 Connection Params
+variable "AWS_SECRET_ACCESS_KEY" {
+  sensitive = true
+}
+
+variable "AWS_ACCESS_KEY_ID" {
+  sensitive = true
+}
+
+# Postgress URL
+variable "POSTGRES_HOST" {
+description = "Specifies the host name - and optionally port - on which PostgreSQL is running. Multiple hosts may be specified, see the docs for more info. If the value begins with a slash, it is used as the directory for the Unix-domain socket (specifying a Port is still required)."
+type = string
+}
+
+variable "POSTGRES_PORT" {
+description = "The TCP port of the PostgreSQL server."
+type = string
+default = "5432"
+}
+
+variable "POSTGRES_DATABASE" {
+description = "The PostgreSQL database to connect to."
+type = string
+}
+
+variable "POSTGRES_USERNAME" {
+description = "The username to connect with. Not required if using IntegratedSecurity."
+type = string
+}
+
+variable "POSTGRES_PASSWORD" {
+description = "The password to connect with. Not required if using IntegratedSecurity."
+type = string
+}
