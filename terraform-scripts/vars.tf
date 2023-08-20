@@ -77,7 +77,7 @@ variable "AWS_ACCESS_KEY_ID" {
 
 # Postgress URL
 variable "POSTGRES_HOST" {
-description = "Specifies the host name - and optionally port - on which PostgreSQL is running. Multiple hosts may be specified, see the docs for more info. If the value begins with a slash, it is used as the directory for the Unix-domain socket (specifying a Port is still required)."
+description = "Specifies the host name - and optionally port - on which PostgreSQL is running"
 type = string
 }
 
@@ -93,11 +93,11 @@ type = string
 }
 
 variable "POSTGRES_USERNAME" {
-description = "The username to connect with. Not required if using IntegratedSecurity."
+description = "The username to connect with"
 type = string
 }
 
 variable "POSTGRES_PASSWORD" {
-description = "The password to connect with. Not required if using IntegratedSecurity."
+description = "The password to connect with"
 type = string
 }
