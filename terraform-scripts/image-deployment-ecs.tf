@@ -10,7 +10,7 @@ data "aws_iam_policy_document" "assume_role_policy" {
 
 # Create the ECS Service which contains the app-task along with side-tasks as well.
 resource "aws_ecs_service" "ecs" {
-  name            = "service-${var.application-name}"
+  name            = "${var.application-name}"
   cluster         = aws_ecs_cluster.ecs.id
   task_definition = aws_ecs_task_definition.app_task.arn
   desired_count   = 3
@@ -23,7 +23,7 @@ resource "aws_ecs_service" "ecs" {
 
   network_configuration {
     subnets          = ["${aws_default_subnet.default_subnet_a.id}", "${aws_default_subnet.default_subnet_b.id}"]
-    assign_public_ip = true                                                
+    # assign_public_ip = true                                                
     security_groups  = ["${aws_security_group.service_security_group.id}"] 
   }
 
@@ -33,10 +33,10 @@ resource "aws_ecs_service" "ecs" {
 }
 
 resource "aws_ecs_task_definition" "app_task" {
-  family = "task-${var.application-name}"
+  family = "${var.application-name}"
   container_definitions = jsonencode([
     {
-      name      = "container-${var.application-name}",
+      name      = "${var.application-name}",
       image     = "${aws_ecr_repository.ecr.repository_url}:latest",
       essential = true
       portMappings = [

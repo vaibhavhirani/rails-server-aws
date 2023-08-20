@@ -9,7 +9,7 @@ resource "aws_default_subnet" "default_subnet_a" {
 
 # Default Subnet B for Cluster/Service/Task/LB
 resource "aws_default_subnet" "default_subnet_b" {
-  availability_zone = "ap-south-1a"
+  availability_zone = "ap-south-1b"
 }
 
 # Create a security group to access the load balancer:

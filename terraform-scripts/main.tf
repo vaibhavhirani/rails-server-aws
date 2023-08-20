@@ -16,6 +16,7 @@ provider "aws" {
 # Elastic Container Registry
 resource "aws_ecr_repository" "ecr" {
   name                 = var.application-name
+  force_delete = true 
   image_tag_mutability = "MUTABLE"
   image_scanning_configuration {
     scan_on_push = true
