@@ -57,3 +57,6 @@ Terraform script that provides all required infrastructure and deploys the Docke
     - `terraform plan` to see the plan of terraform, resources it is going to deploy.
     - And `terraform apply` to apply the changes to AWS.
 - Once you perform the above commands in sequence, our app should be running
+
+
+
