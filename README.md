@@ -12,7 +12,7 @@ Terraform script that provides all required infrastructure and deploys the Docke
     export AWS_REGION="us-west-2"
     ```
 
-## How to deploy the infrastruture?
+## How to deploy?
 
 #### Input Parameters
 - These variables are used in the Terraform configuration file to create the ECR container registry, Redis cluster, S3 bucket, ECS service, CloudWatch log group, and Opensearch domain. 
@@ -60,3 +60,13 @@ Terraform script that provides all required infrastructure and deploys the Docke
 
 
 
+## How to update application version?
+- `VERSION` file contains the current version of the docker image produced and pushed to the ECR Registry.
+- Steps to deploy new version of the application 
+    - Update the  `VERSION` file with new version such 1.0.1.
+    - Then execute these commands - `terraform validate` > `terraform plan` > `terraform apply`.
+
+
+## Where to find logs for each workload
+- We are also provisioning `aws_cloudwatch_log_group` and have made sure that we are connecting our application and resources to it.
+- You can find logs in the Cloud Watch Log Group fron the AWS Management Console.
